@@ -8,15 +8,32 @@ function tictactoe() {
 tictactoe.prototype.enter = function() {
   if ((this.moves.X + this.moves.O) === 9) {
     console.log('STALEMATE! Play again?');
-    // prompt users if they wish to play again
+
   } else if ((this.moves.X + this.moves.O) % 2 === 0) {
-    console.log('Player X, please select your desired tile: ');
-    // cli X enters its tile and X moves count goes up by 1
-    // check if victory
+    console.log('Current Board: ', this.board);
+
+    var putItIn = prompt('Player X: Please Select row and column (no space and in that order) to place your X: ');
+    var rowColumn = putItIn.split('').map(function(item) {
+      return Number(item);
+    });
+
+    this.board[rowColumn[0]][rowColumn[1]] = 'X';
+    this.moves.X += 1;
+
+    this.victory();
+
   } else {
-    console.log('Player O, please select your desired tile: ');
-    // cli O enters its tile and O moves count goes up by 1
-    // check if victory
+    console.log('Current Board: ', this.board);
+
+    var putItIn = prompt('Player O: Please Select row and column (no space and in that order) to place your O: ');
+    var rowColumn = putItIn.split('').map(function(item) {
+      return Number(item);
+    });
+
+    this.board[rowColumn[0]][rowColumn[1]] = 'O';
+    this.moves.O += 1;
+
+    this.victory();
   }
 };
 
@@ -28,16 +45,60 @@ tictactoe.prototype.victory = function() {
   var columnCountX = 0;
   var diagonalCountX = 0;
   var rowCountX = 0;
+  var theVictory = false
 
-  for (var i = 0; i < this.board.length; i++) {
-    // check board if three in a row for X or O
+  if(this.board[0][0] === 'X' && this.board[1][1] === 'X' && this.board[2][2] === 'X') {
+    console.log('VICTORY FOR X!');
+    theVictory = true;
   }
 
-  if (columnCountO === 3 || diagonalCountO === 3 || rowCountO === 3) {
-    console.log('VICTORY FOR O!');
-    // prompt users if they wish to play again
-  } else if (columnCountX === 3 || diagonalCountX === 3 || rowCountX === 3) {
+  if(this.board[0][2] === 'X' && this.board[1][1] === 'X' && this.board[2][0] === 'X') {
     console.log('VICTORY FOR X!');
-    // prompt users if they wish to play again
+    theVictory = true;
+  }
+ 
+  if(this.board[0][0] === 'O' && this.board[1][1] === 'O' && this.board[2][2] === 'O') {
+    console.log('VICTORY FOR O!');
+    theVictory = true;
+  }
+
+  if(this.board[0][2] === 'O' && this.board[1][1] === 'O' && this.board[2][0] === 'O') {
+    console.log('VICTORY FOR O!');
+    theVictory = true;
+  }
+
+  if (this.board[0][0] === 'X' && this.board[1][0] === 'X' && this.board[2][0] === 'X') {
+    console.log('VICTORY FOR X!');
+    theVictory = true;
+  }
+
+  if (this.board[0][1] === 'X' && this.board[1][1] === 'X' && this.board[2][1] === 'X') {
+    console.log('VICTORY FOR X!');
+    theVictory = true;
+  }
+
+  if (this.board[0][2] === 'X' && this.board[1][2] === 'X' && this.board[2][2] === 'X') {
+    console.log('VICTORY FOR X!');
+    theVictory = true;
+  }
+
+  if (this.board[0][0] === 'O' && this.board[1][0] === 'O' && this.board[2][0] === 'O') {
+    console.log('VICTORY FOR O!');
+    theVictory = true;
+  }
+
+  if (this.board[0][1] === 'O' && this.board[1][1] === 'O' && this.board[2][1] === 'O') {
+    console.log('VICTORY FOR O!');
+    theVictory = true;
+  }
+
+  if (this.board[0][2] === 'O' && this.board[1][2] === 'O' && this.board[2][2] === 'O') {
+    console.log('VICTORY FOR O!');
+    theVictory = true;
+  }
+
+  if (theVictory === false) {
+    this.enter();
   }
 }
+
