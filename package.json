@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Vaggelis-Sotiropoulos/tictactoe#readme",
   "dependencies": {
     "chai": "^4.0.2",
+    "cli": "^1.0.1",
     "mocha": "^3.4.2"
   }
 }
